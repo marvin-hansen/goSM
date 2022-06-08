@@ -1,9 +1,6 @@
 package v1_utils
 
-import (
-	t "femto/src/types/config_types"
-	"femto/src/utils/crypto_utils"
-)
+import t "github.com/marvin-hansen/goSM/config_types"
 
 func (u SchedulerUtils) GetMillisecondConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
 	return u.getConfig(t.Millisecond, intervalUnit, fn)
@@ -27,7 +24,7 @@ func (u SchedulerUtils) GetDayConfig(intervalUnit int, fn func()) *t.SchedulerCo
 
 func (u SchedulerUtils) getConfig(scheduleInterval t.ScheduleInterval, intervalUnit int, fn func()) *t.SchedulerConfig {
 	return &t.SchedulerConfig{
-		SchedulerID:      crypto_utils.RandomString(12),
+		SchedulerID:      RandomString(14),
 		ScheduleInterval: scheduleInterval,
 		IntervalUnit:     intervalUnit,
 		Handler:          fn,
