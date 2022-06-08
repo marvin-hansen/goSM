@@ -41,12 +41,18 @@ func (c *ScheduleManager) RemoveScheduler(schedulerID string) {
 
 func (c *ScheduleManager) StopAllSchedulers() {
 	c.state.mtx.Lock()
+	if c.isSchedulerMapEmpty() && c.isConfigMapEmpty() {
+		return
+	}
 	c.stopAllSchedulers()
 	c.state.mtx.Unlock()
 }
 
 func (c *ScheduleManager) RemoveAllScheduler() {
 	c.state.mtx.Lock()
+	if c.isSchedulerMapEmpty() && c.isConfigMapEmpty() {
+		return
+	}
 	c.stopAllSchedulers()
 	c.deleteSchedulerMap()
 	c.deleteConfigMap()
