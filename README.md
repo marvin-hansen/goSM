@@ -1,0 +1,2 @@
+# goSM
+Go Scheduler manager
