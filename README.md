@@ -38,7 +38,7 @@ func printTime() {
     println("Time is: " + time.Now().String())
 }
 
-    func main() {
+func main() {
     println("Start goSM")
     sm := scheduler_manager.NewScheduleManager()
     
@@ -72,7 +72,9 @@ func printTime() {
 }
 
 func checkErr(err error) {
-    if err != nil {println(err.Error())}
+    if err != nil {
+		println(err.Error())
+	}
 }
 ```
 
