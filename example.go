@@ -11,8 +11,7 @@ func printHi() {
 }
 
 func printTime() {
-	t := time.Now()
-	println("Time is: " + t.String())
+	println("Time is: " + time.Now().String())
 }
 
 func main() {
