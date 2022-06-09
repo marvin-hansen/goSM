@@ -2,35 +2,7 @@
 
 goSM - Go Scheduler Manager. Scheduling & managing tasks. Easy, fast, & no fuzz.
 
-## Why?
-
-Many great task schedulers such as gocron exists and these tools offer fine-grained control to when and how to run a
-task.
-This is ideal when your task schedule can be anything from simple to mind-bending complex. However,
-I had (and still have) a project in which a larger number of relatively simple jobs need to be scheduled at a regular
-interval.
-Nothing fancy, just a lot of minion jobs needed to be tracked. While existing libraries are wonderful at scheduling
-tasks at any conceivable interval, however,
-managing all those tasks could be better.
-
-In response, I wrote a scheduler manager that tracks all those scheduled jobs, so I can add new ones, start, pause,
-resume,
-stop and delete any of those tasks at run-time.
-
-While working with existing libraries, I had to debug some scheduler configurations due to incorrectly generated
-scheduler config strings.
-Turned out, this can happen quite easily because in many implementations the actual signature type is interface{} means
-there is no way to verify the correctness of the scheduler configuration before the scheduler gets constructed. As a
-result,
-I've had a few instances of zombie schedulers doing nothing due to incorrect configurations that simply slipped through.
-
-In response, I wrapped the scheduler configuration into a strongly typed struct and added a config generator to ensure
-correct configs.
-
-Ultimately, I re-wrote all my tools and utils as goSM: A Go Scheduler Manager. Scheduling & managing tasks. Easy, fast,
-& no fuzz.
-
-## Limitations a.k.a. when to use
+## When to use
 
 With goSM:
 
@@ -51,16 +23,6 @@ However, use goSM when:
 ```Bash
 go get github.com/marvin-hansen/goSM
 ```
-
-## Configuration
-
-For the bulk of standard use cases, just use the utils to generate the configuration, and you're good to go.
-
-You can instantiate the config struct yourself and add values as you like. However, you will easily there is actually
-little
-wiggle room for customization other than adding custom ID strings mainly because to make configurations a simple and
-robust as
-possible.
 
 ## Usage
 
@@ -117,6 +79,15 @@ println(err.Error())
 }
 ```
 
+## Configuration
+
+For the bulk of standard use cases, just use the utils to generate the configuration, and you're good to go.
+
+You can instantiate the config struct yourself and add values as you like. However, you will easily there is actually
+little
+wiggle room for customization other than adding custom ID strings mainly because to make configurations a simple and
+robust as possible.
+
 ## Timezone support
 
 By default, goSM uses the local Timezone. Bear in mind, your development, testing, and production system may reside
@@ -147,6 +118,34 @@ appropriate error.
 It is perfectly possible that a deep enough concurrency test may expose a potential problem in goSM. I cannot rule that
 out, however, neither do I have the time to do a formal verification. In the mechanism of check before
 start / stop with all public functions being mutex guarded has proven effective in practice.
+
+## Why?
+
+Many great task schedulers such as gocron exists and these tools offer fine-grained control to when and how to run a
+task.
+This is ideal when your task schedule can be anything from simple to mind-bending complex. However,
+I had (and still have) a project in which a larger number of relatively simple jobs need to be scheduled at a regular
+interval.
+Nothing fancy, just a lot of minion jobs needed to be tracked. While existing libraries are wonderful at scheduling
+tasks at any conceivable interval, however,
+managing all those tasks could be better.
+
+In response, I wrote a scheduler manager that tracks all those scheduled jobs, so I can add new ones, start, pause,
+resume,
+stop and delete any of those tasks at run-time.
+
+While working with existing libraries, I had to debug some scheduler configurations due to incorrectly generated
+scheduler config strings.
+Turned out, this can happen quite easily because in many implementations the actual signature type is interface{} means
+there is no way to verify the correctness of the scheduler configuration before the scheduler gets constructed. As a
+result,
+I've had a few instances of zombie schedulers doing nothing due to incorrect configurations that simply slipped through.
+
+In response, I wrapped the scheduler configuration into a strongly typed struct and added a config generator to ensure
+correct configs.
+
+Ultimately, I re-wrote all my tools and utils as goSM: A Go Scheduler Manager. Scheduling & managing tasks. Easy, fast,
+& no fuzz.
 
 ## Author
 
