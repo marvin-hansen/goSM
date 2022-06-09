@@ -22,7 +22,7 @@ func main() {
 	println("Get ScheduleManager utils")
 	ut := scheduler_manager.NewSchedulerUtils()
 
-	println("Configure min schedule")
+	println("Configure minute schedule")
 	// Every one minute, call printHi
 	mCfg := ut.GetMinuteConfig(1, printHi)
 
@@ -31,35 +31,35 @@ func main() {
 
 	println("Scheduler ID: " + mID)
 
-	println("Add min schedule")
+	println("Add minute schedule")
 	err0 := sm.AddScheduler(mCfg)
 	checkErr(err0)
 
-	println("Start min schedule")
+	println("Start minute schedule")
 	err1 := sm.StartScheduler(mID)
 	checkErr(err1)
 
-	println("Configure sec schedule")
+	println("Configure second scheduler")
 	// Every three seconds, call printTime
 	sCfg := ut.GetSecondConfig(3, printTime)
 
-	println("Get sec scheduler ID")
+	println("Get second scheduler ID")
 	sID := sCfg.SchedulerID
 
-	println("Add sec schedule")
+	println("Add second scheduler")
 	err1 = sm.AddScheduler(sCfg)
 	checkErr(err1)
 
-	println("Start sec schedule")
+	println("Start second scheduler")
 	err2 := sm.StartScheduler(sID)
 	checkErr(err2)
 
 	time.Sleep(32 * time.Second)
-	println("Stop sec schedule")
+	println("Stop second schedules")
 	err3 := sm.StopScheduler(sID)
 	checkErr(err3)
 
-	println("Remove sec schedule")
+	println("Remove second scheduler")
 	sm.RemoveScheduler(sID)
 
 	time.Sleep(2 * time.Minute)
