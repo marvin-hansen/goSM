@@ -1,6 +1,10 @@
 package v1_utils
 
-type SchedulerUtils struct{}
+import "sync"
+
+type SchedulerUtils struct {
+	mtx sync.RWMutex
+}
 
 func NewSchedulerUtils() SchedulerUtils {
 	return SchedulerUtils{}

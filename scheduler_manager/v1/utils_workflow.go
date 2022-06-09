@@ -4,7 +4,6 @@ import (
 	"errors"
 	"github.com/go-co-op/gocron"
 	t "github.com/marvin-hansen/goSM/config_types"
-	"time"
 )
 
 func (c *ScheduleManager) addNewScheduler(config *t.SchedulerConfig) error {
@@ -84,6 +83,5 @@ func (c *ScheduleManager) getConfiguredScheduler(config t.SchedulerConfig) *gocr
 }
 
 func (c *ScheduleManager) getNewScheduler() *gocron.Scheduler {
-	// Use local time to run smoothly in the cluster
-	return gocron.NewScheduler(time.Local)
+	return gocron.NewScheduler(c.state.loc)
 }

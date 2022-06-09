@@ -2,27 +2,42 @@ package v1_utils
 
 import t "github.com/marvin-hansen/goSM/config_types"
 
-func (u SchedulerUtils) GetMillisecondConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
-	return u.getConfig(t.Millisecond, intervalUnit, fn)
+func (c *SchedulerUtils) GetMillisecondConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
+	c.mtx.Lock()
+	cfg := c.getConfig(t.Millisecond, intervalUnit, fn)
+	c.mtx.Unlock()
+	return cfg
 }
 
-func (u SchedulerUtils) GetSecondConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
-	return u.getConfig(t.Second, intervalUnit, fn)
+func (c *SchedulerUtils) GetSecondConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
+	c.mtx.Lock()
+	cfg := c.getConfig(t.Second, intervalUnit, fn)
+	c.mtx.Unlock()
+	return cfg
 }
 
-func (u SchedulerUtils) GetMinuteConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
-	return u.getConfig(t.Minute, intervalUnit, fn)
+func (c *SchedulerUtils) GetMinuteConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
+	c.mtx.Lock()
+	cfg := c.getConfig(t.Minute, intervalUnit, fn)
+	c.mtx.Unlock()
+	return cfg
 }
 
-func (u SchedulerUtils) GetHourConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
-	return u.getConfig(t.Hour, intervalUnit, fn)
+func (c *SchedulerUtils) GetHourConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
+	c.mtx.Lock()
+	cfg := c.getConfig(t.Hour, intervalUnit, fn)
+	c.mtx.Unlock()
+	return cfg
 }
 
-func (u SchedulerUtils) GetDayConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
-	return u.getConfig(t.Day, intervalUnit, fn)
+func (c *SchedulerUtils) GetDayConfig(intervalUnit int, fn func()) *t.SchedulerConfig {
+	c.mtx.Lock()
+	cfg := c.getConfig(t.Day, intervalUnit, fn)
+	c.mtx.Unlock()
+	return cfg
 }
 
-func (u SchedulerUtils) getConfig(scheduleInterval t.ScheduleInterval, intervalUnit int, fn func()) *t.SchedulerConfig {
+func (c *SchedulerUtils) getConfig(scheduleInterval t.ScheduleInterval, intervalUnit int, fn func()) *t.SchedulerConfig {
 	return &t.SchedulerConfig{
 		SchedulerID:      RandomString(14),
 		ScheduleInterval: scheduleInterval,
