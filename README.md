@@ -110,8 +110,11 @@ println("Remove second scheduler")
 sm.RemoveScheduler(sID)
 }
 
-
-
+func checkErr(err error) {
+if err != nil {
+println(err.Error())
+}
+}
 ```
 
 ## Timezone support
